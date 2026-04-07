@@ -4,6 +4,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm install -g typescript
-RUN npx tsc
+RUN npx tsc && find dist -name "*.js" | head -20
 EXPOSE 3003
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]
