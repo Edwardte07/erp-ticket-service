@@ -1,0 +1,20 @@
+{
+  "name": "ticket-service",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "npx ts-node-dev --respawn src/tickets/tickets.controller.ts",
+    "build": "npx tsc",
+    "start": "node dist/tickets/tickets.controller.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.0.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "fastify": "^5.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  }
+}
