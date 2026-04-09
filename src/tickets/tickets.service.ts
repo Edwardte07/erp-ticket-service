@@ -16,16 +16,16 @@ export class TicketsService {
       .order('creado_en');
 
     return {
-      id:              t.id,
-      groupId:         t.grupo_id,
-      title:           t.titulo,
-      description:     t.descripcion || '',
-      status:          t.estados?.nombre || 'Pendiente',
+      id:               t.id,
+      groupId:          t.grupo_id,
+      title:            t.titulo,
+      description:      t.descripcion || '',
+      status:           t.estados?.nombre || 'Pendiente',
       assignedToUserId: t.asignado_id || null,
-      createdByUserId: t.autor_id,
-      priority:        t.prioridades?.nombre || 'Media',
-      createdAt:       t.creado_en,
-      dueDate:         t.fecha_final || null,
+      createdByUserId:  t.autor_id,
+      priority:         t.prioridades?.nombre || 'Media',
+      createdAt:        t.creado_en,
+      dueDate:          t.fecha_final || null,
       comments: comments?.map((c: any) => ({
         id:        c.id,
         userId:    c.autor_id,
@@ -126,12 +126,12 @@ export class TicketsService {
     const estadoId    = body.status   ? await this.getEstadoId(body.status)      : undefined;
     const prioridadId = body.priority ? await this.getPrioridadId(body.priority) : undefined;
 
-    const updateData: any = {
-      titulo:      body.title,
-      descripcion: body.description,
-      asignado_id: body.assignedToUserId || null,
-      fecha_final: body.dueDate || null,
-    };
+    const updateData: any = {};
+
+    if (body.title            !== undefined) updateData.titulo      = body.title;
+    if (body.description      !== undefined) updateData.descripcion = body.description;
+    if (body.assignedToUserId !== undefined) updateData.asignado_id = body.assignedToUserId || null;
+    if (body.dueDate          !== undefined) updateData.fecha_final = body.dueDate || null;
     if (estadoId)    updateData.estado_id    = estadoId;
     if (prioridadId) updateData.prioridad_id = prioridadId;
 
